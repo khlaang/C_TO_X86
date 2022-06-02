@@ -35,35 +35,39 @@ One of the best way to determine data types is to look for calls to know functio
 
 1. <u>Save the **return address of the function**</u>,
 
-![image-20220601165715844](/home/ad/.config/Typora/typora-user-images/image-20220601165715844.png)![image-20220601172847652](/home/ad/.config/Typora/typora-user-images/image-20220601172847652.png)
+![image](https://user-images.githubusercontent.com/89603689/171674269-b6f4a002-704b-4d5f-96f0-a74350bf059b.png)
+
 
 
 
 in this case, when we enter into the "stack" function, the address of the "main" function is saved into the stack :
 
-![image-20220601173032523](/home/ad/.config/Typora/typora-user-images/image-20220601173032523.png)
+![image](https://user-images.githubusercontent.com/89603689/171674319-67cd7e44-b128-4e82-9ec2-211f9162c4a9.png)
+
 
 The address of the "main" function will be called at the "retn".
 
 2) <u>To **add arguments of a function**</u> :
 
-![image-20220601173603035](/home/ad/.config/Typora/typora-user-images/image-20220601173603035.png)![image-20220601173625000](/home/ad/.config/Typora/typora-user-images/image-20220601173625000.png)
+![image](https://user-images.githubusercontent.com/89603689/171674369-3a19ede6-3c5d-4df0-b626-e025b418c6d8.png)
+
 
 The number 5 and 10 are mov to the stack (esp and esp+4) before the call of the "stack function". We can see it in dynamic analysis :
 
-![image-20220601173808398](/home/ad/.config/Typora/typora-user-images/image-20220601173808398.png)
+![image](https://user-images.githubusercontent.com/89603689/171674415-671ee6a3-5261-46a6-9ab3-5b4bc519cf75.png)
+
 
 The PUSH instruction is often used to push the arguments into the stack.
 
 3) This is a good representation of the stack made by "Varonis"  (https://www.varonis.com/blog/stack-memory-3) :
 
-![image-20220601165351164](/home/ad/.config/Typora/typora-user-images/image-20220601165351164.png)
+![image](https://user-images.githubusercontent.com/89603689/171674472-1532346e-ca17-4044-b19b-af62ae9686a8.png)
+
 
 4) It is important to notice that the first arguments is push at the last position in the stack (first in last out) :
 
-   ![image-20220601174628996](/home/ad/.config/Typora/typora-user-images/image-20220601174628996.png)
+ ![image](https://user-images.githubusercontent.com/89603689/171674521-1c573b3c-9b26-42dd-9130-04aba9961526.png)
 
-   ![image-20220601174618453](/home/ad/.config/Typora/typora-user-images/image-20220601174618453.png)
 
    
 
@@ -93,11 +97,13 @@ The PUSH instruction is often used to push the arguments into the stack.
 
 # A simple print
 
-![image](https://user-images.githubusercontent.com/89603689/171406852-a0a0926d-54f7-43fe-bd64-c81fc1d76600.png)![image](https://user-images.githubusercontent.com/89603689/171408225-1e374675-c626-4b6e-ba63-7c15b2ca34a3.png)
+![image](https://user-images.githubusercontent.com/89603689/171674560-eded7340-db64-4617-a0ff-36846538e7f2.png)
+
 
 1 - Move the offset of "buffer" into the stack (at the offset of ESP).
 
-![image](https://user-images.githubusercontent.com/89603689/171410256-d3546aac-a4c2-4e01-aedc-357215bdda76.png)
+![image](https://user-images.githubusercontent.com/89603689/171674592-7843e9b4-04dd-4b22-bfac-1afca96bc091.png)
+
 
 The offset of "buffer" is in the section ".rdata" at the adress 0x00404000.
 
@@ -111,7 +117,8 @@ The offset of "buffer" is in the section ".rdata" at the adress 0x00404000.
 
 # A simple scanf
 
-![image-20220601175434646](/home/ad/.config/Typora/typora-user-images/image-20220601175434646.png)![image-20220601180251361](/home/ad/.config/Typora/typora-user-images/image-20220601180251361.png)
+![image](https://user-images.githubusercontent.com/89603689/171674644-3bf51214-976b-41bb-b779-ed2d2a93819e.png)
+
 
 The "scanf" has two arguments :
 
@@ -122,7 +129,8 @@ The "scanf" has two arguments :
 
 2) We save this address in esp+4 :
 
-   ![image-20220601181351346](/home/ad/.config/Typora/typora-user-images/image-20220601181351346.png)
+   ![image](https://user-images.githubusercontent.com/89603689/171674703-73070e6d-f88a-4100-9b3b-e7d9a95d076f.png)
+
 
 3) We push "%d" into the stack,
 
@@ -134,19 +142,20 @@ The "scanf" has two arguments :
 
 # GLOBAL VARIABLE
 
-![image-20220602090424332](/home/ad/.config/Typora/typora-user-images/image-20220602090424332.png)![image-20220602090531391](/home/ad/.config/Typora/typora-user-images/image-20220602090531391.png)![image-20220602090445880](/home/ad/.config/Typora/typora-user-images/image-20220602090445880.png)
+![image](https://user-images.githubusercontent.com/89603689/171674753-561ed159-f9a5-4815-8362-d484aed308f4.png)
+
 
 In this case, the variable x is defined into the _DATA section and there is no memory allocated into the stack.
 
 # Access to the arguments
 
-![image-20220602102015750](/home/ad/.config/Typora/typora-user-images/image-20220602102015750.png)
+![image](https://user-images.githubusercontent.com/89603689/171674819-9876d669-1c0c-40df-ac96-97a1a50ba9f1.png)
 
-![image-20220602101535459](/home/ad/.config/Typora/typora-user-images/image-20220602101535459.png)
 
 Arguments are put into the stack (first in last out). After that we call the _f function :
 
-![image-20220602101943083](/home/ad/.config/Typora/typora-user-images/image-20220602101943083.png)
+![image](https://user-images.githubusercontent.com/89603689/171674870-8ec8369d-e319-4a45-bcec-0134734a5857.png)
+
 
 <u>Just a quick word about the arguments of the main function</u> :
 
@@ -158,13 +167,13 @@ Arguments are put into the stack (first in last out). After that we call the _f 
 
 # WHAT HAPPEN TO THE STRUCT 
 
-![image-20220602103804965](/home/ad/.config/Typora/typora-user-images/image-20220602103804965.png)
+![image](https://user-images.githubusercontent.com/89603689/171674950-eba54849-e2c3-4821-90ad-2a88921677e5.png)
 
-![image-20220602135701370](/home/ad/.config/Typora/typora-user-images/image-20220602135701370.png)
 
 <u>'aMyNumberD' value</u> :
 
-![image-20220602104909831](/home/ad/.config/Typora/typora-user-images/image-20220602104909831.png)
+![image](https://user-images.githubusercontent.com/89603689/171674988-f0009207-28bc-44d2-9bb0-6c3631568809.png)
+
 
 
 
@@ -173,20 +182,19 @@ Arguments are put into the stack (first in last out). After that we call the _f 
 
 
 # Array
+![image](https://user-images.githubusercontent.com/89603689/171675043-8f7a3626-5ca6-4bb4-9d57-e4750668f9ab.png)
 
-![image-20220602142041169](/home/ad/.config/Typora/typora-user-images/image-20220602142041169.png)
-
-![image-20220602175249350](/home/ad/.config/Typora/typora-user-images/image-20220602175249350.png)
 
 mov [esp+eax*4+1Ch], edx : Here there is a construction of an array into the stack.
 
 each time eax is incremented the data contain in edx will be put at the offset of esp+1Ch (base of the stack array) + 4 bytes (because EAX increase by 1 each times in the loop).
+![image](https://user-images.githubusercontent.com/89603689/171675199-3ef6364b-c436-4d41-86e2-b94b91fbefca.png)
 
-![image-20220602175914064](/home/ad/.config/Typora/typora-user-images/image-20220602175914064.png)
 
 <u>Example of jump</u> :
 
-![image-20220602142505398](/home/ad/.config/Typora/typora-user-images/image-20220602142505398.png)
+![image](https://user-images.githubusercontent.com/89603689/171675227-062c6913-f8b2-4287-858e-db4cd5678f6b.png)
+
 
 
 
@@ -204,7 +212,8 @@ ex : mov	[esp+eax*4+1Ch]
 
 It is the link between the usermod and the kernel  mode.
 
-<img src="/home/ad/.config/Typora/typora-user-images/image-20220602120009505.png" alt="image-20220602120009505" style="zoom:33%;" />
+![image](https://user-images.githubusercontent.com/89603689/171675261-f085bb88-c78d-4b26-b659-f387402bd78b.png)
+
 
 
 
@@ -212,7 +221,8 @@ It is the link between the usermod and the kernel  mode.
 
 x86 CPU hardware provides protections rings. Rings 0 (kernel) and 3 (user) are the most used.
 
-<img src="/home/ad/.config/Typora/typora-user-images/image-20220602121215715.png" alt="image-20220602121215715" style="zoom:50%;" />
+![image](https://user-images.githubusercontent.com/89603689/171675328-a08a48b3-50dc-48e4-aeca-9a85f3ef1131.png)
+
 
 - Ring ‑3: Management Engine (ME) {Highest Privilege}
 - Ring ‑2: System Management Mode (SMM)
@@ -235,4 +245,4 @@ Read this great paper about rings protection : https://medium.com/swlh/negative-
 
 <u>Usefull linux syscall</u> :
 
-![image-20220602114639229](/home/ad/.config/Typora/typora-user-images/image-20220602114639229.png)
+![image](https://user-images.githubusercontent.com/89603689/171675368-ac561629-32af-4a3a-9b31-6c4c29f42ffd.png)
