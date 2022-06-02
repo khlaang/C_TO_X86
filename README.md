@@ -206,7 +206,7 @@ ex : mov	[esp+eax*4+1Ch]
 
 
 
-# Les syscall
+# Syscall
 
 <u>What is a syscall ?</u> 
 
