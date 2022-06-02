@@ -2,7 +2,7 @@
 
 I love when things are shortly explained. Reverse engineering and assembly code can be difficult to learn. 
 
-It is just a reminder of some analysis stuff. It has not an educational purpose. 
+It is just a reminder of some analysis stuff. It has not an educational purpose. May be it can be usefull for some poeple, so i keep the repo public.
 
 I will use **x86 instruction** **set** during my analysis. Compilation is made with mingw-gcc (i686-w64-mingw32-gcc).
 
