@@ -198,8 +198,8 @@ each time eax is incremented the data contain in edx will be put at the offset o
 
 # Array of pointers
 
-![image](https://user-images.githubusercontent.com/89603689/171804363-50135aab-2571-4ab1-baa6-5bb2322c81a2.png)
-
+![image](https://user-images.githubusercontent.com/89603689/171804363-50135aab-2571-4ab1-baa6-5bb2322c81a2.png)[image](https://user-images.githubusercontent.com/89603689/171804434-4c9f0781-43b1-4220-8a44-014aa7cf7e66.png)
+![image](https://user-images.githubusercontent.com/89603689/171804468-03247b0e-6e26-4d9a-ae1c-f1d5e083ec22.png)
 
 # Pre multiplication of a register
 
@@ -215,8 +215,8 @@ ex : mov	[esp+eax*4+1Ch]
 
 It is the link between the usermod and the kernel  mode.
 
-![image](https://user-images.githubusercontent.com/89603689/171675261-f085bb88-c78d-4b26-b659-f387402bd78b.png)![image](https://user-images.githubusercontent.com/89603689/171804434-4c9f0781-43b1-4220-8a44-014aa7cf7e66.png)
-![image](https://user-images.githubusercontent.com/89603689/171804468-03247b0e-6e26-4d9a-ae1c-f1d5e083ec22.png)
+![image](https://user-images.githubusercontent.com/89603689/171675261-f085bb88-c78d-4b26-b659-f387402bd78b.png)!
+
 
 
 
