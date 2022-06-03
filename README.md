@@ -198,8 +198,11 @@ each time eax is incremented the data contain in edx will be put at the offset o
 
 # Array of pointers
 
-![image](https://user-images.githubusercontent.com/89603689/171804363-50135aab-2571-4ab1-baa6-5bb2322c81a2.png)[image](https://user-images.githubusercontent.com/89603689/171804434-4c9f0781-43b1-4220-8a44-014aa7cf7e66.png)
-![image](https://user-images.githubusercontent.com/89603689/171804468-03247b0e-6e26-4d9a-ae1c-f1d5e083ec22.png)
+![image](https://user-images.githubusercontent.com/89603689/171804363-50135aab-2571-4ab1-baa6-5bb2322c81a2.png)![image](https://user-images.githubusercontent.com/89603689/171804793-d5be3f9d-d8c2-4e9a-b5cf-a64751cdd7ab.png)
+![image](https://user-images.githubusercontent.com/89603689/171804834-e025376d-3898-4a9b-835c-10650ff0c9f2.png)
+
+![image](https://user-images.githubusercontent.com/89603689/171804908-9ae79e13-28a5-43c9-b10c-7b9371fbcbc6.png)
+
 
 # Pre multiplication of a register
 
